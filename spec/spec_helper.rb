@@ -41,5 +41,5 @@ RSpec.configure do |config|
   config.order = "random"
   config.include Capybara::DSL
   config.include Rails.application.routes.url_helpers
-  # config.include FactoryGirl::Syntax::Methods
+  config.include FactoryGirl::Syntax::Methods
 end
