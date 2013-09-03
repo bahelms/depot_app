@@ -6,4 +6,8 @@ class Product < ActiveRecord::Base
                         with: /\.(gif|png|jpg)\Z/i,
                         message: 'Valid images are .gif, .jpg, .png' 
   }
+
+  def self.latest
+    Product.order(:updated_at).last
+  end
 end
