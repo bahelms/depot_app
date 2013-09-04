@@ -19,6 +19,7 @@
         <li><%= link_to 'News', '#' %></li>
         <li><%= link_to 'Contact', '#' %></li>
       </ul>
+      <small id="page_date"><%= time_tag(Time.now) %></small>
     </div>
     <div id="main">
       <%= yield %>
