@@ -19,3 +19,7 @@
     <% end %>
   <% end %>
 <% end %>
+
+<% if session[:counter] > 5 %>
+  <p id="views_counter">Page views: <%= session[:counter] %></p>
+<% end %>
