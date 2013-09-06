@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
   def index
     @carts = Cart.all
@@ -20,7 +21,9 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html do
+          redirect_to @cart, notice: 'Cart was successfully created.'
+        end
         format.json { render action: 'show', status: :created, location: @cart }
       else
         format.html { render action: 'new' }
@@ -32,7 +35,9 @@ class CartsController < ApplicationController
   def update
     respond_to do |format|
       if @cart.update(cart_params)
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
+        format.html do
+          redirect_to @cart, notice: 'Cart was successfully updated.'
+        end
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,5 +61,10 @@ class CartsController < ApplicationController
 
     def cart_params
       params[:cart]
+    end
+
+    def invalid_cart
+      Rails.logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to store_path, notice: "Invalid Cart"
     end
 end
