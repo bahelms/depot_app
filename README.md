@@ -10,3 +10,5 @@ Things to do
 * Clean up products controller
 * Clean up carts, lineitems controller/views
 * Refactor views into partials
+
+Left off: Task E3
