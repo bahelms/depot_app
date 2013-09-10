@@ -11,4 +11,4 @@ Things to do
 * Clean up carts, lineitems controller/views
 * Refactor views into partials
 
-Left off: Task E3
+Add: Button to delete individual line items
