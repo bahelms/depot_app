@@ -18,41 +18,25 @@ class CartsController < ApplicationController
 
   def create
     @cart = Cart.new(cart_params)
-
-    respond_to do |format|
-      if @cart.save
-        format.html do
-          redirect_to @cart, notice: 'Cart was successfully created.'
-        end
-        format.json { render action: 'show', status: :created, location: @cart }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
+    if @cart.save
+      redirect_to @cart, notice: 'Cart was successfully created.'
+    else
+      render 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @cart.update(cart_params)
-        format.html do
-          redirect_to @cart, notice: 'Cart was successfully updated.'
-        end
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
+    if @cart.update(cart_params)
+      redirect_to @cart, notice: 'Cart was successfully updated.'
+    else
+      render 'edit'
     end
   end
 
   def destroy
     @cart.destroy if @cart.id == session[:cart_id]
     session[:cart_id] = nil
-    respond_to do |format|
-      format.html { redirect_to store_url, notice: "Your cart is currently empty" }
-      format.json { head :no_content }
-    end
+    redirect_to store_url, notice: "Your cart is currently empty"
   end
 
   private

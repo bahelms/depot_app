@@ -6,6 +6,9 @@ FactoryGirl.define do
     image_url    'foobar.png'
   end
 
+  factory :cart do
+  end
+
   factory :line_item do
     price 15.99
     quantity 2

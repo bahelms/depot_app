@@ -6,4 +6,6 @@ describe LineItem do
 
   it { should respond_to(:price) }
   it { should respond_to(:quantity) }
+  it { should respond_to(:cart) }
+  it { should respond_to(:product) }
 end
