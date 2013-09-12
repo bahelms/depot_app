@@ -6,8 +6,7 @@ class LineItemsController < ApplicationController
   def create
     @line_item = @cart.add_product(params[:product_id])
     if @line_item.save
-      redirect_to @line_item.cart, 
-                  notice: 'Line item was successfully created.'
+      redirect_to store_url
       session[:counter] = nil
     else
       render 'new'
