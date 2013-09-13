@@ -2,14 +2,15 @@ class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create, :destroy]
   before_action :set_line_item, only: [:edit, :update, :destroy]
+  respond_to :html, :js
 
   def create
     @line_item = @cart.add_product(params[:product_id])
     if @line_item.save
-      redirect_to store_url
-      session[:counter] = nil
-    else
-      render 'new'
+      respond_with(@line_item) do |format|
+        format.html { redirect_to store_url }
+        format.js { @current_item = @line_item }
+      end
     end
   end
 
