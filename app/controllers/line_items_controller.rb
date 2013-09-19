@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create, :destroy]
+  before_action :set_cart, only: [:create, :destroy, :update]
   before_action :set_line_item, only: [:edit, :update, :destroy]
   respond_to :html, :js
 
@@ -14,14 +14,16 @@ class LineItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
-    if @line_item.update(line_item_params)
-      redirect_to @line_item, notice: 'Line item was successfully updated.'
+    if @line_item.quantity == 1
+      @line_item.destroy
     else
-      render 'edit'
+      @line_item.update_attribute(:quantity, @line_item.quantity - 1)
+    end
+
+    respond_with(@line_item) do |format|
+      format.html { redirect_to @cart }
+      format.js 
     end
   end
 

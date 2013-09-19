@@ -5,10 +5,7 @@ It's a product catalog with a shopping cart.
 
 Things to do
 ----
+* Use Ajax for Lower Quantity and Delete buttons
 
-* Finish tests
-* Clean up products controller
-* Clean up carts, lineitems controller/views
+* Create a test suite
 * Refactor views into partials
-
-Add: Button to delete individual line items
