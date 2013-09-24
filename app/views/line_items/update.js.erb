@@ -1,1 +1,10 @@
-$('#cart_items').html("<%= escape_javascript render(@cart.line_items) %>");
+<% unless @item_id %>
+  $('#<%= @line_item.id %> .quantity').html("<%= @line_item.quantity %>&times;");
+  $('#<%= @line_item.id %> .item_price').html(
+      "<%= number_to_currency(@line_item.total_price) %>"
+  );
+<% else %>
+  $('#<%= @item_id %>').remove();
+<% end %>
+$('#cart').html("<%= escape_javascript render(@cart) %>");
+$('.total_cell').html("<%= number_to_currency(@cart.total_price) %>");

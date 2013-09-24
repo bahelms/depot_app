@@ -1,9 +1,10 @@
-<tr>
-  <td><%= line_item.quantity %>&times;</td>
+<tr id="<%= line_item.id %>">
+  <td class="quantity"><%= line_item.quantity %>&times;</td>
   <td><%= line_item.product.title %></td>
   <td class="item_price"><%= number_to_currency(line_item.total_price) %></td>
   <td>
-    <%= button_to "Lower Quanity", line_item_path(line_item), method: :patch %>
+    <%= button_to "Lower Quanity", line_item_path(line_item), method: :patch,
+        remote: true %>
   </td>
   <td>
     <%= button_to "Delete Item", line_item_path(line_item), method: :delete,
