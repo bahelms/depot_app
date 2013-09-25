@@ -3,4 +3,5 @@ Depot::Application.routes.draw do
   resources :line_items, only: [:create, :update, :destroy]
   resources :carts, only: [:show, :create, :destroy]
   resources :products
+  resources :orders
 end

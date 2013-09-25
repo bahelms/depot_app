@@ -5,7 +5,5 @@ It's a product catalog with a shopping cart.
 
 Things to do
 ----
-* Use Ajax for Lower Quantity and Delete buttons
-
 * Create a test suite
 * Refactor views into partials
