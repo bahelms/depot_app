@@ -16,8 +16,8 @@ class LineItemsController < ApplicationController
 
   def update
     if @line_item.quantity == 1
-      @line_item.destroy
       @item_id = @line_item.id
+      @line_item.destroy
     else
       @line_item.update_attribute(:quantity, @line_item.quantity - 1)
     end

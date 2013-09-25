@@ -6,5 +6,10 @@
 <% else %>
   $('#<%= @item_id %>').remove();
 <% end %>
-$('#cart').html("<%= escape_javascript render(@cart) %>");
+
+<% if @cart.line_items.empty? %>
+  $('#cart').css("display", "none");
+<% else %>
+  $('#cart').html("<%= escape_javascript render(@cart) %>");
+<% end %>
 $('.total_cell').html("<%= number_to_currency(@cart.total_price) %>");
