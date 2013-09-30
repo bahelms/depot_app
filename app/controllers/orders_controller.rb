@@ -11,8 +11,25 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def create
+    @order = Order.new(order_params)
+    @order.add_line_items_from @cart
+
+    if @order.save
+      Cart.destroy(session[:cart_id])
+      session[:cart_id] = nil
+      redirect_to store_url, notice: "Thank you for your order!"
+    else
+      render 'new'
+    end
+  end
+
   private
     def set_order
       @order = Order.find(params[:id])
+    end
+
+    def order_params
+      params.require(:order).permit(:name, :address, :email, :pay_type)
     end
 end
