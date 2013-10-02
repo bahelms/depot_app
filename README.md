@@ -5,5 +5,7 @@ It's a product catalog with a shopping cart.
 
 Things to do
 ----
+* Hide Checkout button when on checkout page
+
 * Create a test suite
 * Refactor views into partials
