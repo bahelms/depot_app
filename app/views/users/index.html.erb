@@ -1,0 +1,14 @@
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<div>
+  <% @users.each do |user| %>
+    <p>Name</p>
+    <ul>
+      <li><%= user.name %></li>
+    </ul>
+  <% end %>
+</div>
+
+<%= link_to "Add New User", new_user_path %>

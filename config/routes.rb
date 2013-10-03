@@ -6,4 +6,5 @@ Depot::Application.routes.draw do
     get :who_bought, on: :member
   end
   resources :orders
+  resources :users
 end
