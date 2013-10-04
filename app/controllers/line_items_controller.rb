@@ -1,5 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
+  skip_before_action :authorize
   before_action :set_cart, only: [:create, :destroy, :update]
   before_action :set_line_item, only: [:edit, :update, :destroy]
   respond_to :html, :js
