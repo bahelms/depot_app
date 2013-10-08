@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
     @users = User.order(:name)
@@ -22,11 +22,26 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to users_url, notice: "User #{@user.name} was seccessfully updated."
+    if @user.authenticate(params[:user][:old_password]) 
+      if @user.update(user_params)
+        redirect_to users_url, notice: "User #{@user.name} was seccessfully updated."
+      else
+        render 'edit'
+      end
     else
-      render 'edit'
+      redirect_to edit_user_path(@user)
+      flash[:notice] = "Invalid password."
     end
+  end
+
+  def destroy
+    begin
+      @user.destroy
+      flash[:notice] = "User #{@user.name} deleted"
+    rescue StandardError => e
+      flash[:notice] = e.message
+    end
+    redirect_to users_url
   end
 
   private

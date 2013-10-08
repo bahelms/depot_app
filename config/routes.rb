@@ -11,6 +11,6 @@ Depot::Application.routes.draw do
   resources :products do
     get :who_bought, on: :member
   end
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:index, :new, :create]
   resources :users
 end

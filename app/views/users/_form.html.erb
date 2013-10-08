@@ -21,11 +21,15 @@
         <%= f.text_field :name, size: 40 %>
       </div>
       <div class="field">
-        <%= f.label :password, "Password:" %><br>
+        <%= f.label :old_password, "Old Password:" %><br>
+        <%= f.password_field :old_password, size: 40 %>
+      </div>
+      <div class="field">
+        <%= f.label :password, "New Password:" %><br>
         <%= f.password_field :password, size: 40 %>
       </div>
       <div class="field">
-        <%= f.label :password_confirmation, "Confirm:" %><br>
+        <%= f.label :password_confirmation, "Confirm Password:" %><br>
         <%= f.password_field :password_confirmation, size: 40 %>
       </div>
       <div class="actions">
